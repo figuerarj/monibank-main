@@ -2,6 +2,27 @@ import ehUmCPF from "./valida-cpf.js";
 import ehMaiorDeIdade from "./valida-idade.js";
 
 const camposDoFormulario = document.querySelectorAll("[required]");
+const formulario = document.querySelector("[data-formulario]");
+
+//seleciona o formulario atraves do data-formulario
+//com addEventListener fica esperando o click do submit.
+formulario.addEventListener("submit", (e) => {
+    //vai evitar que seja realizado um reload.
+    e.preventDefault();
+    const listaRespostas = {
+        //pega o alvo , pega o elemento que tem a palavra dentro do colchetes e pega o valor.
+        "nome": e.target.elements["nome"].value,
+        "email": e.target.elements["email"].value,
+        "rg": e.target.elements["rg"].value,
+        "cpf": e.target.elements["cpf"].value,
+        "aniversario": e.target.elements["aniversario"].value,
+    }
+
+    //armazenamento local. com a chave cadastro e transforma o objeto em JSON string.
+    localStorage.setItem("cadastro", JSON.stringify(listaRespostas));
+    //vai para a pagina abrir-conta-form-2
+    window.location.href = './abrir-conta-form-2.html';
+})
 
 //para cada campo que ele reconhecer que tem o required dentro, entao será realizado...
 camposDoFormulario.forEach((campo) => {

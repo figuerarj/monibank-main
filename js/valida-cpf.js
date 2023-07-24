@@ -2,6 +2,8 @@ export default function ehUmCPF(campo){
     // vai procurar "." e "-" no CPF e vai dar replace por " " um campo vazio.
    const cpf = campo.value.replace(/\.|-/g,"") ;
    if (validaNumerosRepetidos(cpf) || validaPrimeiroDigito(cpf) || validaSegundoDigito(cpf) ){
+    //o custom erro só aparece se o setCustomValidity, não estiver como false.
+    //nesse caso foi colocado um string que é um valor diferente de false, entao o customErro é executado.
     campo.setCustomValidity('Esse cpf não é valido');
    } 
 
